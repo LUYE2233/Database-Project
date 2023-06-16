@@ -1,4 +1,4 @@
-package org.thefouthgroup;
+package org.thefouthgroup.database;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 

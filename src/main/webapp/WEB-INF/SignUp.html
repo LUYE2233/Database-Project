@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="../css/toughGlass.css">
+</head>
+<body>
+<section>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="box">
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+        <div class="container">
+            <div class="form"><h2>Sign up</h2>
+                <form action="SignUpServlet" method="post">
+                    <div class="inputBox"><input type="text" placeholder="Username" name="userName"></div>
+                    <div class="inputBox"><input type="password" placeholder="Password" name="password" id="password"></div>
+                    <div class="inputBox"><input type="password" placeholder="Password Again" name="password2" id="password2"></div>
+                    <div class="inputBox"><input type="submit" onkeydown="incorrect(this)" value="Sign up"></div>
+                    <p class="forget">Already have an account ?<a style="color: mediumpurple;" href="Login.html">Login</a></p></form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function incorrect(submitButton){
+            let password = document.getElementById("password").value;
+            let password2 = document.getElementById("password2").value;
+            if (password !==password2 && password != null){
+                submitButton.disabled = true;
+            }else {
+                submitButton.disabled = false;
+            }
+        }
+    </script>
+</section>
+</body>
+</html>
