@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class MyDatabaseUtil {
     private static final DataSource dataSource = MyDruid.getDataSource();
     private static final Logger LOGGER = MyDruid.getLogger();
+//    sadasd
 
 //    下面俩是查询 和 插入/更新的模板，第二个的result不能回传，因为在statement.close()后resultset就是空集了
 
