@@ -14,7 +14,7 @@ public class MyDruid {
     static {
         try {
             Properties prop = new Properties();
-            prop.load(new FileInputStream("src/main/resources/druid.properties"));
+            prop.load(new FileInputStream("D:\\HTML\\ManageSystem\\src\\main\\resources\\druid.properties"));
             dataSource = DruidDataSourceFactory.createDataSource(prop);
         } catch (Exception e) {
             LOGGER.info(e.toString());
@@ -23,6 +23,7 @@ public class MyDruid {
             LOGGER.info("Datasource Created");
         }else {
             LOGGER.info("Datasource Failed");
+            System.exit(1);
         }
     }
 

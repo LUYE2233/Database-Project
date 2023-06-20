@@ -22,6 +22,7 @@
             <div class="form"><h2>Sign up</h2>
                 <form action="SignUp" method="post" id="form">
                     <div class="inputBox"><input type="text" placeholder="Username" name="userName" id="username"></div>
+                    <div class="inputBox"><input type="text" placeholder="Username" name="userID" id="userID"></div>
                     <div class="inputBox"><input type="password" placeholder="New Password" name="password" id="password"></div>
                     <div class="inputBox"><input type="password" placeholder="Password Again" name="password2" id="password2"></div>
                     <div class="inputBox"><input type="submit" value="SignUp" id="submit" disabled></div>
@@ -36,8 +37,9 @@
             let name = document.querySelector("#username").value;
             let pw1 = document.querySelector("#password").value;
             let pw2 = document.querySelector("#password2").value;
+            let id = document.querySelector("#userID").value;
             console.log(pw1)
-            if(pw1 === pw2 && pw1.length >= 6 && name.length !== 0){
+            if(pw1 === pw2 && pw1.length >= 6 && name.length !== 0 && id.length === 10){
                 sub.disabled = false;
             }else {
                 sub.disabled = true

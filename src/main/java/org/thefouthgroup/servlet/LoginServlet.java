@@ -27,6 +27,7 @@ import java.io.IOException;
         if (MyDatabaseUtil.login(userName, password)) {
             HttpSession httpSession = req.getSession(true);
             httpSession.setAttribute("userName", userName);
+            httpSession.setAttribute("userID",MyDatabaseUtil.getUserID(userName));
             req.getRequestDispatcher(BASE + "/LoginSucceed.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);

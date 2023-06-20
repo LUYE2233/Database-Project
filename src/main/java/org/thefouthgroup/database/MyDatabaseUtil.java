@@ -55,18 +55,58 @@ public class MyDatabaseUtil {
         return result;
     }
 
-    public static void signUp(String userName, String password){
-        String sql = "insert into USER(USERNAME,PASSWORD) values('{username}','{password}')";
-        sql = sql.replace("{username}",userName);
-        sql = sql.replace("{password}",password);
+    public static String getUserID(String userName){
+        String result = null;
+        if (userName == null) {
+            return result;
+        }
+        String sql = "SELECT USERID FROM USER WHERE USERNAME = '{userName}'";
+        sql = sql.replace("{userName}", userName);
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                result = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
+        return result;
+    }
+
+    public static void signUp(String userName, String password, String userID) {
+        String sql = "insert into USER(USERNAME,PASSWORD,USERID) values('{username}','{password}','{userID}')";
+        sql = sql.replace("{username}", userName);
+        sql = sql.replace("{password}", password);
+        sql = sql.replace("{userID}", userID);
+        databaseInserter(sql);
+        String groupSQL = "insert into usergroup(userid, groupid) VALUES ('{userid}','{groupid}')";
+        groupSQL = groupSQL.replace("{username}", userName);
+        groupSQL = groupSQL.replace("{groupid}", "2");
+//      groupID: 0=root 1=teacher 2=student
+    }
+
+    public static void reset(String userName, String password) {
+        String sql = "UPDATE USER SET PASSWORD = '{password}' WHERE USERNAME = '{username}'";
+        sql = sql.replace("{username}", userName);
+        sql = sql.replace("{password}", password);
         databaseInserter(sql);
     }
 
-    public static void reset(String userName, String password){
-        String sql = "UPDATE USER SET PASSWORD = '{password}' WHERE USERNAME = '{username}';";
-        sql = sql.replace("{username}",userName);
-        sql = sql.replace("{password}",password);
-        databaseInserter(sql);
+    public static int indentify(String userID) {
+        int result = 2;
+        String sql = "select GROUPID from usergroup where USERID = '{userID}'";
+        sql = sql.replace("{userID}", userID);
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                result = Integer.parseInt(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
+        return result;
     }
 
     public static void main(String[] args) {

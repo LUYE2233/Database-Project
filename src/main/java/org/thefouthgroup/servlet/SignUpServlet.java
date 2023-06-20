@@ -25,7 +25,8 @@ public class SignUpServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
-        MyDatabaseUtil.signUp(userName,password);
+        String userID = req.getParameter("userID");
+        MyDatabaseUtil.signUp(userName,password,userID);
         if (MyDatabaseUtil.login(userName,password)) {
             HttpSession httpSession = req.getSession(true);
             httpSession.setAttribute("userName", userName);
