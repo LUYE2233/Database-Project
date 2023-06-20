@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${sessionScope.username}同学你好</title>
+    <title>${sessionScope.userName}同学你好</title>
     <link rel="stylesheet" href="../css/toughGlass.css">
 </head>
 <body>
@@ -22,7 +22,7 @@
     <div class="square" style="--i:2;"></div>
     <div class="square" style="--i:3;"></div>
     <div class="square" style="--i:4;"></div>
-    <div class="container">
+    <div class="container" style="width: 90%">
         <div class="form" id="form">
             <h2>登陆成功，欢迎Dr.${sessionScope.userName}</h2>
         </div>

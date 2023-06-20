@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${sessionScope.username}老师你好</title>
+    <title>${sessionScope.userName}老师你好</title>
     <link rel="stylesheet" href="../css/toughGlass.css">
 </head>
 <body>
