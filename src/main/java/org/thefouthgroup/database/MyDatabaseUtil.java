@@ -53,4 +53,18 @@ public class MyDatabaseUtil {
         }
         return result;
     }
+
+    public static void signUp(String userName, String password){
+        String sql = "insert into USER(USERNAME,PASSWORD) values('{username}','{password}')";
+        sql = sql.replace("{username}",userName);
+        sql = sql.replace("{password}",password);
+        databaseInserter(sql);
+    }
+
+    public static void reset(String userName, String password){
+        String sql = "UPDATE USER SET PASSWORD = '{password}' WHERE USERNAME = '{username}';";
+        sql = sql.replace("{username}",userName);
+        sql = sql.replace("{password}",password);
+        databaseInserter(sql);
+    }
 }
