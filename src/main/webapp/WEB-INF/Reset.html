@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重置密码</title>
+    <link rel="stylesheet" href="../css/toughGlass.css">
 </head>
 <body>
-
+<section>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="box">
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+        <div class="container">
+            <div class="form" id="form"><h2>Reset</h2>
+                <form action="ResetServlet" method="post">
+                    <div class="inputBox"><input type="text" placeholder="Username" name="userName" id="username"></div>
+                    <div class="inputBox"><input type="password" placeholder="Old Password or Reset Words" name="oldPassword" id="oldPassword"></div>
+                    <div class="inputBox"><input type="password" placeholder="New Password" name="password" id="password"></div>
+                    <div class="inputBox"><input type="password" placeholder="Password Again" name="password2" id="password2"></div>
+                    <div class="inputBox"><input type="submit" value="Reset" id="submit" disabled></div>
+                    <p class="forget">Already have an account ?<a style="color: mediumpurple;" href="Login.html">Login</a></p></form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const sub = document.querySelector("#submit");
+        const form = document.querySelector("#form");
+        form.addEventListener('input',function () {
+            let name = document.querySelector("#username").value;
+            let pwo = document.querySelector("#oldPassword").value;
+            let pw1 = document.querySelector("#password").value;
+            let pw2 = document.querySelector("#password2").value;
+            console.log(pw1)
+            if(pw1 === pw2 && pw1.length >= 6 && name.length !== 0 && pwo.length !== 0){
+                sub.disabled = false;
+            }else {
+                sub.disabled = true
+            }
+        })
+    </script>
+</section>
 </body>
 </html>

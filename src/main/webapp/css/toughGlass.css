@@ -203,3 +203,7 @@ section .color:nth-child(3) {
     color: #fff;
     font-weight: 600;
 }
+
+.form .note{
+    color: crimson;
+}

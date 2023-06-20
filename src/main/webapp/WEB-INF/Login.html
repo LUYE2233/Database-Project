@@ -19,16 +19,29 @@
         <div class="square" style="--i:3;"></div>
         <div class="square" style="--i:4;"></div>
         <div class="container">
-            <div class="form"><h2>Login</h2>
+            <div class="form" id="form"><h2>Login</h2>
                 <form action="LoginServlet" method="post">
-                    <div class="inputBox"><input type="text" placeholder="Username" name="userName"></div>
-                    <div class="inputBox"><input type="password" placeholder="Password" name="password"></div>
-                    <div class="inputBox"><input type="submit" value="Login"></div>
-                    <p class="forget">Forget Password ?<a style="color: mediumpurple;" href="#">Click Here</a></p>
+                    <div class="inputBox"><input type="text" placeholder="Username" name="userName" id="username"></div>
+                    <div class="inputBox"><input type="password" placeholder="Password" name="password" id="password"></div>
+                    <div class="inputBox"><input type="submit" value="Login" id="submit" disabled></div>
+                    <p class="forget">Forget Password ?<a style="color: mediumpurple;" href="Reset.html">Reset</a></p>
                     <p class="forget">Don't have an account ?<a style="color: mediumpurple;" href="SignUp.html">Sign up</a></p></form>
             </div>
         </div>
     </div>
 </section>
+<script>
+    const sub = document.querySelector("#submit");
+    const form = document.querySelector("#form");
+    form.addEventListener('input',function () {
+        let name = document.querySelector("#username").value;
+        let pw1 = document.querySelector("#password").value;
+        if(pw1.length >= 6 && name.length !== 0){
+            sub.disabled = false;
+        }else {
+            sub.disabled = true
+        }
+    })
+</script>
 </body>
 </html>

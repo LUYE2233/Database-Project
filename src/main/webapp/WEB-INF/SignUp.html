@@ -20,25 +20,29 @@
         <div class="square" style="--i:4;"></div>
         <div class="container">
             <div class="form"><h2>Sign up</h2>
-                <form action="SignUpServlet" method="post">
-                    <div class="inputBox"><input type="text" placeholder="Username" name="userName"></div>
-                    <div class="inputBox"><input type="password" placeholder="Password" name="password" id="password"></div>
+                <form action="SignUpServlet" method="post" id="form">
+                    <div class="inputBox"><input type="text" placeholder="Username" name="userName" id="username"></div>
+                    <div class="inputBox"><input type="password" placeholder="New Password" name="password" id="password"></div>
                     <div class="inputBox"><input type="password" placeholder="Password Again" name="password2" id="password2"></div>
-                    <div class="inputBox"><input type="submit" onkeydown="incorrect(this)" value="Sign up"></div>
+                    <div class="inputBox"><input type="submit" value="SignUp" id="submit" disabled></div>
                     <p class="forget">Already have an account ?<a style="color: mediumpurple;" href="Login.html">Login</a></p></form>
             </div>
         </div>
     </div>
     <script>
-        function incorrect(submitButton){
-            let password = document.getElementById("password").value;
-            let password2 = document.getElementById("password2").value;
-            if (password !==password2 && password != null){
-                submitButton.disabled = true;
+        const sub = document.querySelector("#submit");
+        const form = document.querySelector("#form");
+        form.addEventListener('input',function () {
+            let name = document.querySelector("#username").value;
+            let pw1 = document.querySelector("#password").value;
+            let pw2 = document.querySelector("#password2").value;
+            console.log(pw1)
+            if(pw1 === pw2 && pw1.length >= 6 && name.length !== 0){
+                sub.disabled = false;
             }else {
-                submitButton.disabled = false;
+                sub.disabled = true
             }
-        }
+        })
     </script>
 </section>
 </body>
