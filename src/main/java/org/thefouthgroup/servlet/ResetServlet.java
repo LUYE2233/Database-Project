@@ -11,7 +11,7 @@ import org.thefouthgroup.database.MyDatabaseUtil;
 import java.io.IOException;
 
 
-@WebServlet("/ResetServlet")
+@WebServlet("/Reset")
 public class ResetServlet extends HttpServlet {
     private static final String BASE = "/WEB-INF";
 

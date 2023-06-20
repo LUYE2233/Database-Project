@@ -10,7 +10,7 @@ import org.thefouthgroup.database.MyDatabaseUtil;
 
 import java.io.IOException;
 
-@WebServlet("/SignUpServlet")
+@WebServlet("/SignUp")
 
 public class SignUpServlet extends HttpServlet {
 

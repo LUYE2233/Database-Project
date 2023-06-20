@@ -10,7 +10,7 @@ import org.thefouthgroup.database.MyDatabaseUtil;
 
 import java.io.IOException;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/Login")
  public class LoginServlet extends HttpServlet{
     private static final String BASE = "/WEB-INF";
 
