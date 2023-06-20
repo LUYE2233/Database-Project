@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class MyDatabaseUtil {
@@ -66,5 +67,9 @@ public class MyDatabaseUtil {
         sql = sql.replace("{username}",userName);
         sql = sql.replace("{password}",password);
         databaseInserter(sql);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(login("KUKUKING", "112210ly"));
     }
 }

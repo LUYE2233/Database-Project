@@ -17,7 +17,7 @@ public class SignUpServlet extends HttpServlet {
     private static final String BASE = "/WEB-INF";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);
+        req.getRequestDispatcher(BASE + "/SignUp.html").forward(req, resp);
     }
 
     @Override

@@ -19,6 +19,11 @@ public class MyDruid {
         } catch (Exception e) {
             LOGGER.info(e.toString());
         }
+        if (dataSource != null) {
+            LOGGER.info("Datasource Created");
+        }else {
+            LOGGER.info("Datasource Failed");
+        }
     }
 
     public static DataSource getDataSource(){

@@ -17,7 +17,7 @@ public class ResetServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);
+        req.getRequestDispatcher(BASE + "/Reset.html").forward(req, resp);
     }
 
     @Override
