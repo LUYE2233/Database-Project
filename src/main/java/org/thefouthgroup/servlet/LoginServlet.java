@@ -11,7 +11,7 @@ import org.thefouthgroup.database.MyDatabaseUtil;
 import java.io.IOException;
 
 @WebServlet("/Login")
- public class LoginServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     private static final String BASE = "/WEB-INF";
 
     @Override
@@ -27,8 +27,13 @@ import java.io.IOException;
         if (MyDatabaseUtil.login(userName, password)) {
             HttpSession httpSession = req.getSession(true);
             httpSession.setAttribute("userName", userName);
-            httpSession.setAttribute("userID",MyDatabaseUtil.getUserID(userName));
-            req.getRequestDispatcher(BASE + "/LoginSucceed.jsp").forward(req, resp);
+            String userID = MyDatabaseUtil.getUserID(userName);
+            httpSession.setAttribute("userID", userID);
+            if (MyDatabaseUtil.getUserGroup(userID) != 2) {
+                req.getRequestDispatcher(BASE + "/Teacher.jsp").forward(req, resp);
+            }else {
+                req.getRequestDispatcher(BASE + "/Student.jsp").forward(req, resp);
+            }
         } else {
             req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);
         }

@@ -30,7 +30,7 @@ public class ResetServlet extends HttpServlet {
             MyDatabaseUtil.reset(userName, password);
             HttpSession httpSession = req.getSession(true);
             httpSession.setAttribute("userName", userName);
-            req.getRequestDispatcher(BASE + "/LoginSucceed.jsp").forward(req, resp);
+            req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);
         }else {
             req.getRequestDispatcher(BASE + "/Reset.html").forward(req, resp);
         }

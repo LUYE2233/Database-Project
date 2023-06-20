@@ -27,12 +27,7 @@ public class SignUpServlet extends HttpServlet {
         String password = req.getParameter("password");
         String userID = req.getParameter("userID");
         MyDatabaseUtil.signUp(userName,password,userID);
-        if (MyDatabaseUtil.login(userName,password)) {
-            HttpSession httpSession = req.getSession(true);
-            httpSession.setAttribute("userName", userName);
-            req.getRequestDispatcher(BASE + "/LoginSucceed.jsp").forward(req, resp);
-        } else {
-            req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);
-        }
+        req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);
+
     }
 }

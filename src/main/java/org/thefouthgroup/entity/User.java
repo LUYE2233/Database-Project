@@ -54,4 +54,8 @@ public class User {
     public void setGroupID(int groupID) {
         this.groupID = groupID;
     }
+
+    public static boolean isCorrect(User user){
+        return user.groupID >= 0 && user.groupID <= 2;
+    }
 }

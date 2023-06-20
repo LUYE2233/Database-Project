@@ -1,5 +1,8 @@
 package org.thefouthgroup.database;
 
+import org.thefouthgroup.entity.Computer;
+import org.thefouthgroup.entity.Room;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +17,7 @@ public class MyDatabaseUtil {
 
 //    下面俩是查询 和 插入/更新的模板，第二个的result不能回传，因为在statement.close()后resultset就是空集了
 
-    private static void databaseInserter(String sql) {
+    public static void databaseInserter(String sql) {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
@@ -55,7 +58,7 @@ public class MyDatabaseUtil {
         return result;
     }
 
-    public static String getUserID(String userName){
+    public static String getUserID(String userName) {
         String result = null;
         if (userName == null) {
             return result;
@@ -74,15 +77,38 @@ public class MyDatabaseUtil {
         return result;
     }
 
-    public static void signUp(String userName, String password, String userID) {
-        String sql = "insert into USER(USERNAME,PASSWORD,USERID) values('{username}','{password}','{userID}')";
-        sql = sql.replace("{username}", userName);
-        sql = sql.replace("{password}", password);
+    public static int getUserGroup(String userID) {
+        int result = 2;
+        if (userID == null) {
+            return result;
+        }
+        String sql = "SELECT GROUPID FROM usergroup WHERE USERID = '{userID}'";
         sql = sql.replace("{userID}", userID);
-        databaseInserter(sql);
-        String groupSQL = "insert into usergroup(userid, groupid) VALUES ('{userid}','{groupid}')";
-        groupSQL = groupSQL.replace("{username}", userName);
-        groupSQL = groupSQL.replace("{groupid}", "2");
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                result = Integer.parseInt(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
+        return result;
+    }
+
+    public static void signUp(String userName, String password, String userID) {
+        if(getUserID(userName)==null){
+            String sql = "insert into USER(USERNAME,PASSWORD,USERID,USERBALANCE) values('{username}','{password}','{userID}','{userBalance}')";
+            sql = sql.replace("{username}", userName);
+            sql = sql.replace("{password}", password);
+            sql = sql.replace("{userID}", userID);
+            sql = sql.replace("{userBalance}", "0");
+            databaseInserter(sql);
+            String groupSQL = "insert into usergroup(userid, groupid) VALUES ('{userid}','{groupid}')";
+            groupSQL = groupSQL.replace("{userid}", userID);
+            groupSQL = groupSQL.replace("{groupid}", "2");
+            databaseInserter(groupSQL);
+        }
 //      groupID: 0=root 1=teacher 2=student
     }
 
@@ -107,6 +133,22 @@ public class MyDatabaseUtil {
             LOGGER.info(e.toString());
         }
         return result;
+    }
+
+    public static void LoadRoom(Room room) {
+        String roomID = room.getRoomID();
+        String sql = "select COMPUTERID from computer where ROOMID = '{roomID}'";
+        List<Computer> computerList = room.getComputerList();
+        sql = sql.replace("{roomID}", roomID);
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                computerList.add(new Computer(rs.getString(1)));
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
     }
 
     public static void main(String[] args) {
