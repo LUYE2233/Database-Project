@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: luye
@@ -9,26 +11,35 @@
 <html>
 <head>
     <title>${sessionScope.userName}老师你好</title>
-    <link rel="stylesheet" href="../css/toughGlass.css">
+    <link rel="stylesheet" href="../css/toughGlassInner.css">
 </head>
 <body>
 <section>
-<div class="color"></div>
-<div class="color"></div>
-<div class="color"></div>
-<div class="box">
-    <div class="square" style="--i:0;"></div>
-    <div class="square" style="--i:1;"></div>
-    <div class="square" style="--i:2;"></div>
-    <div class="square" style="--i:3;"></div>
-    <div class="square" style="--i:4;"></div>
-    <div class="container" style="width: 90%">
-        <div class="form" id="form">
-            <h2>登陆成功，欢迎Dr.${sessionScope.userName}</h2>
-
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="color"></div>
+    <div class="box">
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+        <div class="container">
+            <div class="form" id="form">
+                <h2>登陆成功，欢迎Dr.${sessionScope.userName}</h2>
+                <div class="inputBox"><input type="submit" id="refresh" value="refresh"></div>
+                <c:forEach items="${sessionScope.roomList}" var="c">
+                    <form action="">
+                        <h4>${c.roomName}</h4>
+                        <p>${c.room}</p>
+                        <input type="submit" value="choose">
+                    </form>
+                </c:forEach>
+            </div>
         </div>
     </div>
-</div>
 </section>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js">
+</script>
 </body>
 </html>

@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
             httpSession.setAttribute("userName", userName);
             String userID = MyDatabaseUtil.getUserID(userName);
             httpSession.setAttribute("userID", userID);
+
             if (MyDatabaseUtil.getUserGroup(userID) != 2) {
                 req.getRequestDispatcher(BASE + "/Teacher.jsp").forward(req, resp);
             }else {

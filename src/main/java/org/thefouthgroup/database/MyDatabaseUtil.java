@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -135,7 +136,22 @@ public class MyDatabaseUtil {
         return result;
     }
 
-    public static void LoadRoom(Room room) {
+    public static List<Room> loadRoom(){
+        List<Room> result = new ArrayList<>();
+        String sql = "select * from room";
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet rs = statement.executeQuery(sql);
+            for(int i = 1; i<=rs.getRow();i++){
+                System.out.println(rs.getString(i));
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
+        return result;
+    }
+
+    public static void loadComputer(Room room) {
         String roomID = room.getRoomID();
         String sql = "select COMPUTERID from computer where ROOMID = '{roomID}'";
         List<Computer> computerList = room.getComputerList();
@@ -151,7 +167,7 @@ public class MyDatabaseUtil {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(login("KUKUKING", "112210ly"));
+    public static void main(String[] args){
+        loadRoom();
     }
 }

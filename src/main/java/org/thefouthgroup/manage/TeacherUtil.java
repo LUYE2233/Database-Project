@@ -1,15 +1,11 @@
 package org.thefouthgroup.manage;
 
-import org.thefouthgroup.database.MyDatabaseUtil;
 import org.thefouthgroup.database.MyDruid;
 import org.thefouthgroup.entity.Computer;
 import org.thefouthgroup.entity.Room;
 import org.thefouthgroup.entity.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Logger;
 
 import static org.thefouthgroup.database.MyDatabaseUtil.databaseInserter;
