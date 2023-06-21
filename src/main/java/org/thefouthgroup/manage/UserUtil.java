@@ -5,6 +5,7 @@ import org.thefouthgroup.entity.Computer;
 import org.thefouthgroup.entity.User;
 
 public class UserUtil {
+    //上机
     public static void startComputer(User user, Computer computer){
         String userID = user.getUserID();
         String computerID = computer.getComputerID();
@@ -13,7 +14,7 @@ public class UserUtil {
         sql = sql.replace("{computerID}",computerID);
         MyDatabaseUtil.databaseInserter(sql);
     }
-
+    //关机
     public static void endComputer(User user, Computer computer){
         String userID = user.getUserID();
         String computerID = computer.getComputerID();
@@ -21,5 +22,6 @@ public class UserUtil {
         sql = sql.replace("{userID}",userID);
         sql = sql.replace("{computerID}",computerID);
         MyDatabaseUtil.databaseInserter(sql);
+
     }
 }

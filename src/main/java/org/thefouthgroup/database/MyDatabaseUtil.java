@@ -40,7 +40,7 @@ public class MyDatabaseUtil {
     }
 
     /*________________________________________________________________________________________________*/
-
+    //用户登陆
     public static boolean login(String userName, String password) {
         boolean result = false;
         if (userName == null || password == null) {
@@ -97,7 +97,7 @@ public class MyDatabaseUtil {
         }
         return result;
     }
-
+    //用户注册
     public static void signUp(String userName, String password, String userID) {
         if (getUserID(userName) == null) {
             String sql = "insert into USER(USERNAME,PASSWORD,USERID,USERBALANCE) values('{username}','{password}','{userID}','{userBalance}')";
@@ -152,7 +152,7 @@ public class MyDatabaseUtil {
         return result;
     }
 
-    public static void loadComputer(Room room) {
+    public static List<Computer> loadComputer(Room room) {
         String roomID = room.getRoomID();
         String sql = "select COMPUTERID from computer where ROOMID = '{roomID}'";
         List<Computer> computerList = room.getComputerList();
@@ -166,9 +166,10 @@ public class MyDatabaseUtil {
         } catch (SQLException e) {
             LOGGER.info(e.toString());
         }
+        return computerList;
     }
 
-    public static User buildFromDB(String userID) {
+    public static User buildUserFromDB(String userID) {
         String sql = "select user.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user,usergroup where user.USERID=usergroup.USERID and user.USERID = '{userID}'";
         sql = sql.replace("{userID}", userID);
         ResultSet result = null;
@@ -190,6 +191,26 @@ public class MyDatabaseUtil {
         return user;
     }
 
+    public static Room buildRoomFromDB(String roomID) {
+        String sql = "select ROOMID,ROOMNAME,ROOMPRICE from room where ROOMID = '{roomID}'";
+        sql = sql.replace("{roomID}", roomID);
+        ResultSet result = null;
+        Room room = null;
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            result = statement.executeQuery(sql);
+            while (result.next()) {
+                String roomIDt = result.getString(1);
+                String roomName = result.getString(2);
+                double roomPrice = Double.parseDouble(result.getString(3));
+                room = new Room(roomIDt,roomName,roomPrice);
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
+        return room;
+    }
+
     public static void main(String[] args) {
         String sql = "select user.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user,usergroup where user.USERID=usergroup.USERID and user.USERID = '{userID}'";
         sql = sql.replace("{userID}", "2021213196");
@@ -208,4 +229,6 @@ public class MyDatabaseUtil {
             LOGGER.info(e.toString());
         }
     }
+
+
 }

@@ -6,7 +6,6 @@ import java.util.List;
 public class Room {
     private String roomID;
     private String roomName;
-
     private double roomPrice;
     private List<Computer> computerList = new ArrayList<>();
 
