@@ -35,17 +35,28 @@ create table USERECORD
     COST double
 );
 
-delimiter $$
-create trigger set_start_time after insert on  userecord for each row begin
-    update userecord set STARTTIME = now() where STARTTIME is null and USERID=NEW.USERID and COMPUTERID=NEW.COMPUTERID;
-end $$
+drop trigger set_start_time;
+drop trigger set_end_time;
 
-create trigger set_end_time after update on userecord for each row begin
-    update userecord set ENDTIME = now() where ENDTIME is null and COST=-1 and USERID=NEW.USERID and COMPUTERID=NEW.COMPUTERID;
-    update userecord set COST = timestampdiff(second ,STARTTIME,ENDTIME) * (
+delimiter $$
+create trigger set_start_time before insert on userecord for each row begin
+    set new.STARTTIME = now();
+end $$
+delimiter ;
+
+delimiter $$
+create trigger set_end_time before update on userecord for each row begin
+    set new.ENDTIME = now();
+    set new.COST = timestampdiff(second ,new.STARTTIME,new.ENDTIME) * (
         select ROOMPRICE from room where ROOMID = (
             select ROOMID from computer where computer.COMPUTERID = NEW.COMPUTERID
         )
-    ) where COST=-1 and USERID=NEW.USERID and COMPUTERID=NEW.COMPUTERID;
+    );
 end $$
 delimiter ;
+
+delete from userecord where USERID = '2021213209';
+
+select USERID,COMPUTERID,COST,ENDTIME from userecord where DATE_FORMAT(ENDTIME,'%Y-%m-%d %H:%i:%s') between '{beginTime}' and '{endTime}';
+
+select USERID,COMPUTERID,COST,STARTTIME,ENDTIME from userecord where ENDTIME between '{beginTime}' and '{endTime}';

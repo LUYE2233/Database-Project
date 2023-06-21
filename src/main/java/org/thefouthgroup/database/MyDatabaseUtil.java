@@ -2,6 +2,7 @@ package org.thefouthgroup.database;
 
 import org.thefouthgroup.entity.Computer;
 import org.thefouthgroup.entity.Room;
+import org.thefouthgroup.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -98,7 +99,7 @@ public class MyDatabaseUtil {
     }
 
     public static void signUp(String userName, String password, String userID) {
-        if(getUserID(userName)==null){
+        if (getUserID(userName) == null) {
             String sql = "insert into USER(USERNAME,PASSWORD,USERID,USERBALANCE) values('{username}','{password}','{userID}','{userBalance}')";
             sql = sql.replace("{username}", userName);
             sql = sql.replace("{password}", password);
@@ -136,13 +137,13 @@ public class MyDatabaseUtil {
         return result;
     }
 
-    public static List<Room> loadRoom(){
+    public static List<Room> loadRoom() {
         List<Room> result = new ArrayList<>();
         String sql = "select * from room";
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
-            for(int i = 1; i<=rs.getRow();i++){
+            for (int i = 1; i <= rs.getRow(); i++) {
                 System.out.println(rs.getString(i));
             }
         } catch (SQLException e) {
@@ -167,7 +168,44 @@ public class MyDatabaseUtil {
         }
     }
 
-    public static void main(String[] args){
-        loadRoom();
+    public static User buildFromDB(String userID) {
+        String sql = "select user.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user,usergroup where user.USERID=usergroup.USERID and user.USERID = '{userID}'";
+        sql = sql.replace("{userID}", userID);
+        ResultSet result = null;
+        User user = null;
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            result = statement.executeQuery(sql);
+            while (result.next()) {
+                String userIDt = result.getString(1);
+                String userName = result.getString(2);
+                String password = result.getString(3);
+                double userBalance = Double.valueOf(result.getString(4));
+                int groupID = Integer.parseInt(result.getString(5));
+                user = new User(userName,password,userIDt,userBalance,groupID);
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
+        return user;
+    }
+
+    public static void main(String[] args) {
+        String sql = "select user.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user,usergroup where user.USERID=usergroup.USERID and user.USERID = '{userID}'";
+        sql = sql.replace("{userID}", "2021213196");
+        ResultSet result = null;
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement()) {
+            result = statement.executeQuery(sql);
+            while (result.next()) {
+                String userID = result.getString(1);
+                String userName = result.getString(2);
+                String password = result.getString(3);
+                double userBalance = Double.valueOf(result.getString(4));
+                int groupID = Integer.parseInt(result.getString(5));
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e.toString());
+        }
     }
 }
