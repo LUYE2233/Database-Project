@@ -46,7 +46,7 @@ public class MyDatabaseUtil {
         if (userID == null || password == null) {
             return result;
         }
-        String sql = "SELECT PASSWORD FROM USER WHERE USERID = '{userID}'";
+        String sql = "SELECT PASSWORD FROM user_main WHERE USERID = '{userID}'";
         sql = sql.replace("{userID}", userID);
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
@@ -70,7 +70,7 @@ public class MyDatabaseUtil {
         if (userName == null) {
             return result;
         }
-        String sql = "SELECT USERID FROM USER WHERE USERNAME = '{userName}'";
+        String sql = "SELECT USERID FROM user_main WHERE USERNAME = '{userName}'";
         sql = sql.replace("{userName}", userName);
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
@@ -84,34 +84,16 @@ public class MyDatabaseUtil {
         return result;
     }
 
-    public static int getUserGroup(String userID) {
-        int result = 2;
-        if (userID == null) {
-            return result;
-        }
-        String sql = "SELECT GROUPID FROM usergroup WHERE USERID = '{userID}'";
-        sql = sql.replace("{userID}", userID);
-        try (Connection connection = dataSource.getConnection();
-             Statement statement = connection.createStatement()) {
-            ResultSet rs = statement.executeQuery(sql);
-            if (rs.next()) {
-                result = Integer.parseInt(rs.getString(1));
-            }
-        } catch (SQLException e) {
-            LOGGER.info(e.toString());
-        }
-        return result;
-    }
     //用户注册
     public static void signUp(String userName, String password, String userID) {
         if (getUserID(userName) == null) {
-            String sql = "insert into USER(USERNAME,PASSWORD,USERID,USERBALANCE) values('{username}','{password}','{userID}','{userBalance}')";
+            String sql = "insert into user_main(USERNAME,PASSWORD,USERID,USERBALANCE) values('{username}','{password}','{userID}','{userBalance}')";
             sql = sql.replace("{username}", userName);
             sql = sql.replace("{password}", password);
             sql = sql.replace("{userID}", userID);
             sql = sql.replace("{userBalance}", "0");
             databaseInserter(sql);
-            String groupSQL = "insert into usergroup(userid, groupid) VALUES ('{userid}','{groupid}')";
+            String groupSQL = "insert into user_group(userid, groupid) VALUES ('{userid}','{groupid}')";
             groupSQL = groupSQL.replace("{userid}", userID);
             groupSQL = groupSQL.replace("{groupid}", "2");
             databaseInserter(groupSQL);
@@ -120,7 +102,7 @@ public class MyDatabaseUtil {
     }
 
     public static void reset(String userID, String password) {
-        String sql = "UPDATE USER SET PASSWORD = '{password}' WHERE USERID = '{userID}'";
+        String sql = "UPDATE user_main SET PASSWORD = '{password}' WHERE USERID = '{userID}'";
         sql = sql.replace("{userID}", userID);
         sql = sql.replace("{password}", password);
         databaseInserter(sql);
@@ -128,7 +110,7 @@ public class MyDatabaseUtil {
 
     public static int indentify(String userID) {
         int result = 2;
-        String sql = "select GROUPID from usergroup where USERID = '{userID}'";
+        String sql = "select GROUPID from user_group where USERID = '{userID}'";
         sql = sql.replace("{userID}", userID);
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
@@ -175,7 +157,7 @@ public class MyDatabaseUtil {
     }
 
     public static User buildUserFromDB(String userID) {
-        String sql = "select user.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user,usergroup where user.USERID=usergroup.USERID and user.USERID = '{userID}'";
+        String sql = "select user_main.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user_main,user_group where user_main.USERID=user_group.USERID and user_main.USERID = '{userID}'";
         sql = sql.replace("{userID}", userID);
         ResultSet result = null;
         User user = null;
@@ -217,7 +199,7 @@ public class MyDatabaseUtil {
     }
 
     public static void main(String[] args) {
-        String sql = "select user.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user,usergroup where user.USERID=usergroup.USERID and user.USERID = '{userID}'";
+        String sql = "select user_main.USERID,USERNAME,PASSWORD,USERBALANCE,GROUPID from user_main,user_group where user.USERID=usergroup.USERID and user.USERID = '{userID}'";
         sql = sql.replace("{userID}", "2021213196");
         ResultSet result = null;
         try (Connection connection = dataSource.getConnection();

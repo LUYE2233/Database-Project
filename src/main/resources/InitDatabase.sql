@@ -1,4 +1,4 @@
-create table `user`
+create table user_main
 (
     USERNAME    varchar(20),
     PASSWORD    varchar(20),
@@ -6,11 +6,16 @@ create table `user`
     USERBALANCE double
 );
 
-create table usergroup
+create table user_group
 (
     USERID  char(10) references user (USERID),
-    GROUPID char(1)
+    GROUPID char(1),
+    primary key (USERID)
 );
+
+commit ;
+
+update user_group set GROUPID = 0 where USERID = 2021213196;
 
 create table room
 (
@@ -34,6 +39,9 @@ create table USERECORD
     ENDTIME datetime,
     COST double
 );
+
+drop table user;
+drop table usergroup;
 
 drop trigger set_start_time;
 drop trigger set_end_time;
