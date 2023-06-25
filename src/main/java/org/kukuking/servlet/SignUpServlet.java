@@ -1,23 +1,22 @@
-package org.thefouthgroup.servlet;
+package org.kukuking.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.thefouthgroup.database.MyDatabaseUtil;
+import org.kukuking.database.MyDatabaseUtil;
 
 import java.io.IOException;
 
-@WebServlet("/SignUp")
+@WebServlet("/Filter/SignUp")
 
 public class SignUpServlet extends HttpServlet {
 
     private static final String BASE = "/WEB-INF";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(BASE + "/SignUp.html").forward(req, resp);
+        req.getRequestDispatcher(BASE + "/SignUp.jsp").forward(req, resp);
     }
 
     @Override
@@ -27,7 +26,6 @@ public class SignUpServlet extends HttpServlet {
         String password = req.getParameter("password");
         String userID = req.getParameter("userID");
         MyDatabaseUtil.signUp(userName,password,userID);
-        req.getRequestDispatcher(BASE + "/Login.html").forward(req, resp);
-
+        req.getRequestDispatcher(BASE + "/Login.jsp").forward(req, resp);
     }
 }

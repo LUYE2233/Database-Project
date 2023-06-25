@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <link rel="stylesheet" href="../css/toughGlass.css">
+    <link rel="stylesheet" href="../../css/toughGlass.css">
 </head>
 <body>
 <section>
@@ -19,7 +19,7 @@
         <div class="square" style="--i:4;"></div>
         <div class="container">
             <div class="form" id="form">
-                <h2>登陆成功，欢迎Dr.${sessionScope.userName}</h2>
+                <h2>登陆成功，欢迎Dr.${sessionScope.user.userName}</h2>
             </div>
         </div>
     </div>

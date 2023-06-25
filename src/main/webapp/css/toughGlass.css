@@ -204,6 +204,7 @@ section .color:nth-child(3) {
     font-weight: 600;
 }
 
-.form .note{
+.form span{
     color: crimson;
+    font-weight: 600;
 }

@@ -1,4 +1,4 @@
-package org.thefouthgroup.entity;
+package org.kukuking.entity;
 
 import java.util.List;
 

@@ -26,7 +26,7 @@
         <div class="square" style="--i:4;"></div>
         <div class="container">
             <div class="form" id="form">
-                <h2>登陆成功，欢迎Dr.${sessionScope.userName}</h2>
+                <h2>登陆成功，欢迎Dr.${sessionScope.user.userName}</h2>
                 <div class="inputBox"><input type="submit" id="refresh" value="refresh"></div>
                 <c:forEach items="${sessionScope.roomList}" var="c">
                     <form action="">

@@ -1,8 +1,8 @@
-package org.thefouthgroup.database;
+package org.kukuking.database;
 
-import org.thefouthgroup.entity.Computer;
-import org.thefouthgroup.entity.Room;
-import org.thefouthgroup.entity.User;
+import org.kukuking.entity.Computer;
+import org.kukuking.entity.Room;
+import org.kukuking.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -41,23 +41,28 @@ public class MyDatabaseUtil {
 
     /*________________________________________________________________________________________________*/
     //用户登陆
-    public static boolean login(String userName, String password) {
+    public static boolean login(String userID, String password) {
         boolean result = false;
-        if (userName == null || password == null) {
+        if (userID == null || password == null) {
             return result;
         }
-        String sql = "SELECT PASSWORD FROM USER WHERE USERNAME = '{userName}'";
-        sql = sql.replace("{userName}", userName);
+        String sql = "SELECT PASSWORD FROM USER WHERE USERID = '{userID}'";
+        sql = sql.replace("{userID}", userID);
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
-            if (rs.next() && rs.getString(1).equals(password)) {
+            if (rs.next() && rs.getString("PASSWORD").equals(password)) {
                 result = true;
             }
         } catch (SQLException e) {
             LOGGER.info(e.toString());
         }
         return result;
+    }
+
+    public static void initDB(){
+        String sql = """
+                """;
     }
 
     public static String getUserID(String userName) {
@@ -114,9 +119,9 @@ public class MyDatabaseUtil {
 //      groupID: 0=root 1=teacher 2=student
     }
 
-    public static void reset(String userName, String password) {
-        String sql = "UPDATE USER SET PASSWORD = '{password}' WHERE USERNAME = '{username}'";
-        sql = sql.replace("{username}", userName);
+    public static void reset(String userID, String password) {
+        String sql = "UPDATE USER SET PASSWORD = '{password}' WHERE USERID = '{userID}'";
+        sql = sql.replace("{userID}", userID);
         sql = sql.replace("{password}", password);
         databaseInserter(sql);
     }

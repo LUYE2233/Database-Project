@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录</title>
-    <link rel="stylesheet" href="../css/toughGlass.css">
+    <link rel="stylesheet" href="../../css/toughGlass.css">
 </head>
 <body>
 <section>
@@ -25,21 +25,22 @@
                     <div class="inputBox"><input type="password" placeholder="Password" name="password" id="password"></div>
                     <div class="inputBox"><input type="submit" value="Login" id="submit" disabled></div>
                     <p class="forget">Forget Password ?<a style="color: mediumpurple;" href="Reset">Reset</a></p>
-                    <p class="forget">Don't have an account ?<a style="color: mediumpurple;" href="SignUp">Sign up</a></p></form>
+                    <p class="forget">Don't have an account ?<a style="color: mediumpurple;" href="SignUp">Sign up</a></p>
+                    <span id="tips"></span>
+                </form>
             </div>
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js" type="text/javascript"></script>
 <script>
-    const sub = document.querySelector("#submit");
-    const form = document.querySelector("#form");
-    form.addEventListener('input',function () {
-        let name = document.querySelector("#username").value;
-        let pw1 = document.querySelector("#password").value;
-        if(pw1.length >= 6 && name.length !== 0){
-            sub.disabled = false;
+    $("#form").keydown(()=>{
+        if($("#username").val().length === 10 && $("#password").val().length >= 6){
+            $("#submit").prop("disabled",false);
+            $("#tips").empty();
         }else {
-            sub.disabled = true
+            $("#submit").prop("disabled",true);
+            $("#tips").empty().append("<p>userID/password incorrect</p>");
         }
     })
 </script>

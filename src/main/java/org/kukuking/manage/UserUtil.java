@@ -1,8 +1,8 @@
-package org.thefouthgroup.manage;
+package org.kukuking.manage;
 
-import org.thefouthgroup.database.MyDatabaseUtil;
-import org.thefouthgroup.entity.Computer;
-import org.thefouthgroup.entity.User;
+import org.kukuking.database.MyDatabaseUtil;
+import org.kukuking.entity.Computer;
+import org.kukuking.entity.User;
 
 public class UserUtil {
     //上机

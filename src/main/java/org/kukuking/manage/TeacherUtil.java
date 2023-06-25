@@ -1,10 +1,10 @@
-package org.thefouthgroup.manage;
+package org.kukuking.manage;
 
-import org.thefouthgroup.database.MyDruid;
-import org.thefouthgroup.entity.Computer;
-import org.thefouthgroup.entity.Room;
-import org.thefouthgroup.entity.UseRecord;
-import org.thefouthgroup.entity.User;
+import org.kukuking.database.MyDruid;
+import org.kukuking.entity.Computer;
+import org.kukuking.entity.Room;
+import org.kukuking.entity.UseRecord;
+import org.kukuking.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static org.thefouthgroup.database.MyDatabaseUtil.databaseInserter;
+import static org.kukuking.database.MyDatabaseUtil.databaseInserter;
 
 public class TeacherUtil {
     private static final DataSource dataSource = MyDruid.getDataSource();

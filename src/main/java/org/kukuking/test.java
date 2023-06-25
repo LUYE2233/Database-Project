@@ -1,15 +1,11 @@
-package org.thefouthgroup;
+package org.kukuking;
 
-import org.thefouthgroup.database.MyDatabaseUtil;
-import org.thefouthgroup.database.MyDruid;
-import org.thefouthgroup.entity.Computer;
-import org.thefouthgroup.entity.Room;
-import org.thefouthgroup.entity.UseRecord;
-import org.thefouthgroup.entity.User;
-import org.thefouthgroup.manage.TeacherUtil;
-import org.thefouthgroup.manage.UserUtil;
+import org.kukuking.database.MyDatabaseUtil;
+import org.kukuking.database.MyDruid;
+import org.kukuking.entity.Computer;
+import org.kukuking.entity.User;
+import org.kukuking.manage.UserUtil;
 
-import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 

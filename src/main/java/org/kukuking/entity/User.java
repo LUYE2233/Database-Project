@@ -1,4 +1,4 @@
-package org.thefouthgroup.entity;
+package org.kukuking.entity;
 
 public class User {
     private String userName;
