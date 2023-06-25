@@ -31,7 +31,7 @@
         <div class="square" style="--i:4;"></div>
         <div class="container">
             <div class="form" id="form"><h2>Login</h2>
-                <form action="Filter/Login" method="post">
+                <form action="Login" method="post">
                     <div class="inputBox"><input type="text" placeholder="UserID" name="userID" id="userID"></div>
                     <div class="inputBox"><input type="password" placeholder="Password" name="password" id="password">
                     </div>

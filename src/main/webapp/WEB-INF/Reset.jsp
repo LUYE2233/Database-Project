@@ -30,7 +30,7 @@
         <div class="square" style="--i:4;"></div>
         <div class="container">
             <div class="form" id="form"><h2>Reset</h2>
-                <form action="Filter/Reset" method="post">
+                <form action="Reset" method="post">
                     <div class="inputBox"><input type="text" placeholder="UserID" name="userID" id="userID"></div>
                     <div class="inputBox"><input type="password" placeholder="Old Password or Reset Words"
                                                  name="oldPassword" id="oldPassword"></div>

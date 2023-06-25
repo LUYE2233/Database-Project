@@ -30,7 +30,7 @@
         <div class="square" style="--i:4;"></div>
         <div class="container">
             <div class="form"><h2>Sign up</h2>
-                <form action="Filter/SignUp" method="post" id="form">
+                <form action="SignUp" method="post" id="form">
                     <div class="inputBox"><input type="text" placeholder="Username" name="userName" id="username"></div>
                     <div class="inputBox"><input type="text" placeholder="UserID" name="userID" id="userID"></div>
                     <div class="inputBox"><input type="password" placeholder="New Password" name="password"
