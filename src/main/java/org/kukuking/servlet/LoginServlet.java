@@ -10,7 +10,7 @@ import org.kukuking.entity.User;
 
 import java.io.IOException;
 
-@WebServlet("/Filter/Login")
+@WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
     private static final String BASE = "/WEB-INF";
 
@@ -27,11 +27,7 @@ public class LoginServlet extends HttpServlet {
         if (MyDatabaseUtil.login(userID, password)) {
             User user = MyDatabaseUtil.buildUserFromDB(userID);
             req.getSession().setAttribute("user",user);
-            if (user.getGroupID() != 2) {
-                req.getRequestDispatcher(BASE + "/Teacher.jsp").forward(req, resp);
-            }else {
-                req.getRequestDispatcher(BASE + "/Student.jsp").forward(req, resp);
-            }
+            resp.sendRedirect(req.getContextPath() + "/Filter/Welcome");
         } else {
             req.setAttribute("tips","login failed");
             req.getRequestDispatcher(BASE + "/Login.jsp").forward(req, resp);

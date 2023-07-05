@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>${sessionScope.userName}老师你好</title>
-    <link rel="stylesheet" href="../css/toughGlassInner.css">
+    <link rel="stylesheet" href="../../css/toughGlassInner.css">
 </head>
 <body>
 <section>

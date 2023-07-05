@@ -52,7 +52,7 @@ section .color:nth-child(3) {
 
 .box .square {
     position: absolute;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(1px);
     box-shadow: 0 25px 45px rgb(0, 0, 0, 0.1);
     border: 1px solid rgb(255, 255, 255, 0.5);
     border-right: 1px solid rgb(255, 255, 255, 0.2);
@@ -111,14 +111,12 @@ section .color:nth-child(3) {
 }
 
 .container {
+    display: grid;
     position: relative;
     width: 100%;
     min-height: 400px;
     background: rgb(255, 255, 255, 0.1);
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     backdrop-filter: blur(5px);
     box-shadow: 0 25px 45px rgb(0, 0, 0, 0.1);
     border: 1px solid rgb(255, 255, 255, 0.5);
@@ -130,7 +128,7 @@ section .color:nth-child(3) {
     position: relative;
     height: 100%;
     width: 100%;
-    padding: 40px;
+    padding: 10px;
 }
 
 .form h2 {
@@ -172,25 +170,41 @@ section .color:nth-child(3) {
     box-shadow: 0 5px 15px rgb(0, 0, 0, 0.05);
 }
 
+.form p {
+    width: 100%;
+    background: rgb(255, 255, 255, 0.2);
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    border-right: 1px solid rgb(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.05);
+}
+
 .form .inputBox input::placeholder {
     color: #fff;
 }
 
-.form .inputBox input[type="submit"] {
+.form .inputBox input[type="submit"],input[type="button"] {
     background: #fff;
     color: #666;
     max-width: 100px;
     cursor: pointer;
     margin-bottom: 20px;
     font-weight: 600;
+    display: inline;
 }
 
-.form .inputBox input[type="submit"]:hover{
+.form .inputBox input[type="submit"]:hover,input[type="button"]:hover{
     background: #ff359b;
     color: #dff1ff;
 }
 
-.form .inputBox input[type="submit"]:disabled{
+.form .inputBox input[type="submit"]:disabled,input[type="button"]:disabled{
     background: #575757;
     color: #dff1ff;
 }
@@ -207,6 +221,22 @@ section .color:nth-child(3) {
     border-bottom: 1px solid rgb(255, 255, 255, 0.2);
     padding: 20px 15px 15px 5px;
     text-decoration: none;
+}
+
+.form_textarea {
+    resize: none;
+    width: 100%;
+    background: rgb(255, 255, 255, 0.2);
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    border-right: 1px solid rgb(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #000000;
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.05);
 }
 
 .card h4{
@@ -228,4 +258,154 @@ section .color:nth-child(3) {
 
 .form .note{
     color: crimson;
+}
+
+.art{
+    padding: 10px;
+    background-color: rgba(255,255,255,0.5);
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.area {
+    padding: 10px;
+}
+
+/* 格栅设置 */
+.row {
+    display: flex;
+    align-items: flex-start;
+    justify-items: center;
+
+}
+
+/* 横向导航栏 */
+.header {
+    margin: 20px;
+    overflow: hidden;
+    display: flex;
+    list-style: none;
+    outline: none;
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.header a {
+    text-decoration: none;
+    display: block;
+    padding: 25px;
+    color: #666;
+    max-width: 150px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.header a:hover {
+    background: #ff359b;
+    color: #dff1ff;
+}
+
+.header .right {
+    margin-left: auto;
+}
+
+/* 侧边栏 */
+.sidebar {
+    margin: 20px;
+    max-width: 80%;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.sidebar-group {
+    background: rgba(255, 255, 255, 0.6);
+    list-style: none;
+}
+
+.sidebar-group > h2 {
+    background-color: rgba(43, 215, 252, 0.6);
+    padding: 10px 20px;
+    color: white;
+}
+
+.sidebar-group > ul {
+    list-style: none;
+}
+
+.sidebar-group a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    color: #666;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.sidebar-group a:hover {
+    background: #ff359b;
+    color: #dff1ff;
+}
+
+/* 注脚 */
+.footer {
+    text-align: center;
+    color: #666;
+    font-weight: 550;
+}
+
+/*-------- 12栅格 -----------  */
+.col-md-1 {
+    width: 8.33%;
+}
+
+.col-md-2 {
+    width: 16.67%;
+}
+
+.col-md-3 {
+    width: 25%;
+}
+
+.col-md-4 {
+    width: 33.33%;
+}
+
+.col-md-5 {
+    width: 41.67%;
+}
+
+.col-md-6 {
+    width: 50%;
+}
+
+.col-md-7 {
+    width: 58.33%;
+}
+
+.col-md-8 {
+    width: 66.67%;
+}
+
+.col-md-9 {
+    width: 75%;
+}
+
+.col-md-10 {
+    width: 83.33%;
+}
+
+.col-md-11 {
+    width: 91.67%;
+}
+
+.col-md-12 {
+    width: 100%;
+}
+
+.main{
+
+}
+
+.son{
+
 }

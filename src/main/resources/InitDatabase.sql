@@ -13,7 +13,21 @@ create table user_group
     primary key (USERID)
 );
 
-commit ;
+create table news
+(
+    NEWS_ID int primary key auto_increment,
+    NEWS_NAME varchar(100),
+    NEWS_TEXT longtext
+);
+
+drop table news;
+
+create table teachers
+(
+    TEACHER_ID char(10) primary key ,
+    TEACHER_NAME varchar(100) ,
+    TEACHER_TEXT longtext
+);
 
 update user_group set GROUPID = 0 where USERID = 2021213196;
 

@@ -8,16 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/Filter/Welcome")
-public class WelcomeServlet extends HttpServlet {
-    private static final String BASE = "/WEB-INF";
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(BASE + "/News.jsp").forward(req,resp);
-    }
-
+@WebServlet("/Filter/SaveNews")
+public class SaveNews extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req,resp);
+        String newsText = req.getParameter("mainArt");
     }
 }

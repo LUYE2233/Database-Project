@@ -9,7 +9,7 @@ import org.kukuking.database.MyDatabaseUtil;
 
 import java.io.IOException;
 
-@WebServlet("/Filter/SignUp")
+@WebServlet("/SignUp")
 
 public class SignUpServlet extends HttpServlet {
 

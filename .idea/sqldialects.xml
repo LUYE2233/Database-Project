@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/cb4b380e-e1bf-402e-aeca-def010becccf/console.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/kukuking/database/MyDatabaseUtil.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/InitDatabase.sql" dialect="MySQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>
