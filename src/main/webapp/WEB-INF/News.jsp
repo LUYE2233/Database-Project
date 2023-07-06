@@ -8,12 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/css/toughGlassInner.css";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>TEST</title>
-    <link rel="stylesheet" href="../css/toughGlassInner.css">
+    <link rel="stylesheet" href="<%=basePath%>" />
 </head>
 <body>
 <section>
@@ -26,7 +30,7 @@
         <div class="square" style="--i:2;"></div>
         <div class="square" style="--i:3;"></div>
         <div class="square" style="--i:4;"></div>
-        <!-- 导航栏 -->
+        <%--<!-- 导航栏 -->--%>
         <div class="row">
             <div class="col-md-12">
                 <ul class="header">
@@ -35,16 +39,16 @@
                     <li><a href="#">Labs</a></li>
                     <li><a href="#">Teachers</a></li>
                     <c:if test="${sessionScope.user.groupID < 2}">
-                        <li><a href=""><i class="main>">Add</i></a></li>
-                        <li><a href="#"><i class="son>">Add</i></a></li>
-                        <li><a href="#"><i class="son>">Add</i></a></li>
+                        <li><a href="#">Add</a></li>
+                        <li><a href="#">Add</a></li>
+                        <li><a href="#">Add</a></li>
                     </c:if>
                     <li class="right"><a href="#">Logout</a></li>
                 </ul>
             </div>
         </div>
         <div class="row">
-            <!--   sidebar     -->
+            <%--<!--   sidebar     -->--%>
             <div class="col-md-2 sidebar">
                 <div class="sidebar-group">
                     <h2>News List</h2>
@@ -55,7 +59,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- main -->
+            <%-- main --%>
             <div class="col-md-10 art">
                 <form id="mainText" method="post" action="test">
                     <label for="mainArt"></label><textarea id="mainArt" name="mainArt" class="form_textarea">The Test Line</textarea>
@@ -80,7 +84,7 @@
 <script src="https://code.jquery.com/jquery-3.0.0.min.js" type="text/javascript"></script>
 <script src="https://cdn.tiny.cloud/1/nsufo92uklykf0xlw5giofxczqyj9s4tnorxx3n74uo45xqq/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
-<!--<script src="webjars/tinymce/5.10.6/tinymce.min.js"></script>-->
+<%--<script src="webjars/tinymce/5.10.6/tinymce.min.js"></script>--%>
 <script>
     tinymce.init({
         selector: "#mainArt",
@@ -88,27 +92,5 @@
         plugins: "image",
         statusbar: false
     });
-    let change = $("#changeSwitch");
-    change.addEventListener(onclick, () => {
-
-    })
-</script>
-<script type="module">
-    let son = $(".son");
-    son.hide();
-    let func = function () {
-        let main = $('.main');
-        main.hover(function (e) {
-            main.text("cached");
-            main.animate({rotate: '180deg'}, 300);
-            son.fadeIn(200);
-        });
-        main.mouseleave(function (e) {
-            main.animate({rotate: '-0deg'}, 300);
-            main.text("account_circle");
-            son.fadeOut(1000);
-        });
-    };
-    func();
 </script>
 </html>
