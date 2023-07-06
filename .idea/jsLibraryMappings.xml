@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{icons, jquery-3.0.0, tinymce}" />
+    <file url="file://$PROJECT_DIR$" libraries="{jquery, tinymce}" />
   </component>
 </project>

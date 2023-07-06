@@ -189,7 +189,7 @@ section .color:nth-child(3) {
     color: #fff;
 }
 
-.form .inputBox input[type="submit"],input[type="button"] {
+.form .inputBox input[type="submit"],input[type="button"]{
     background: #fff;
     color: #666;
     max-width: 100px;

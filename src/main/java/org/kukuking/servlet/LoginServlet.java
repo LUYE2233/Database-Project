@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
         if (MyDatabaseUtil.login(userID, password)) {
             User user = MyDatabaseUtil.buildUserFromDB(userID);
             req.getSession().setAttribute("user",user);
-            resp.sendRedirect(req.getContextPath() + "/Filter/Welcome");
+            resp.sendRedirect(req.getContextPath() + "/Filter/Introductions");
         } else {
             req.setAttribute("tips","login failed");
             req.getRequestDispatcher(BASE + "/Login.jsp").forward(req, resp);

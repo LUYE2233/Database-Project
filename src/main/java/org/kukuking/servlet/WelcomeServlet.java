@@ -13,7 +13,7 @@ public class WelcomeServlet extends HttpServlet {
     private static final String BASE = "/WEB-INF";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(BASE + "/News.jsp").forward(req,resp);
+        req.getRequestDispatcher(BASE + "/Introductions.jsp").forward(req,resp);
     }
 
     @Override

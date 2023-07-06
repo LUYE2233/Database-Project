@@ -8,10 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/Filter/SaveNews")
-public class SaveNews extends HttpServlet {
+@WebServlet("/Filter/LogOff")
+public class LogOffServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String newsText = req.getParameter("mainArt");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().invalidate();
+        resp.sendRedirect(req.getContextPath() + "/Login");
     }
 }

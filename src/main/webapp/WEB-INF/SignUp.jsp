@@ -8,6 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/css/toughGlass.css";
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -15,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>注册</title>
-    <link rel="stylesheet" href="../css/toughGlass.css">
+    <link rel="stylesheet" href="<%=basePath%>">
 </head>
 <body>
 <section>

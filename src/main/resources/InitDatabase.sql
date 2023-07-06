@@ -20,13 +20,27 @@ create table news
     NEWS_TEXT longtext
 );
 
-drop table news;
+drop table introductions;
 
 create table teachers
 (
-    TEACHER_ID char(10) primary key ,
+    TEACHER_ID int primary key auto_increment,
     TEACHER_NAME varchar(100) ,
     TEACHER_TEXT longtext
+);
+
+create table labs
+(
+    LAB_ID int primary key auto_increment,
+    LAB_NAME varchar(100) ,
+    LAB_TEXT longtext
+);
+
+create table introductions
+(
+    INTRODUCTION_ID int primary key auto_increment,
+    INTRODUCTION_NAME varchar(100) ,
+    INTRODUCTION_TEXT longtext
 );
 
 update user_group set GROUPID = 0 where USERID = 2021213196;

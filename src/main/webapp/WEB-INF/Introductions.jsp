@@ -16,7 +16,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>News</title>
+    <title>Introductions</title>
     <link rel="stylesheet" href="<%=basePath%>"/>
 </head>
 <body style="overflow: scroll">
@@ -46,10 +46,10 @@
             <%--<!--   sidebar     -->--%>
             <div class="col-md-2 sidebar">
                 <div class="sidebar-group">
-                    <h2>News List</h2>
+                    <h2>Introductions List</h2>
                     <ul>
-                        <c:forEach items="${sessionScope.newsList}" var="c">
-                            <li><a id="${c.newsID}" class="news" href="News?newsID=${c.newsID}">${c.newsName}</a></li>
+                        <c:forEach items="${sessionScope.introductionsList}" var="c">
+                            <li><a id="${c.introductionID}" class="introductions" href="Introductions?introductionID=${c.introductionID}">${c.introductionName}</a></li>
                         </c:forEach>
                     </ul>
                     <c:if test="${sessionScope.user.groupID < 2}">
@@ -64,23 +64,23 @@
             <%-- main --%>
             <div class="col-md-10 art">
                 <div id="readOnly">
-                    <h1>${sessionScope.mainNews.newsName}</h1>
-                    ${sessionScope.mainNews.newsText}
+                    <h1>${sessionScope.mainIntroduction.introductionName}</h1>
+                    ${sessionScope.mainIntroduction.introductionText}
                 </div>
 
-                <form style="display: none" id="manageForm" method="post" action="News">
+                <form style="display: none" id="manageForm" method="post" action="Introductions">
                     <label for="mainID"><input readonly style="display: none" name="mainID" id="mainID"
-                                               value="${sessionScope.mainNews.newsID}">
+                                               value="${sessionScope.mainIntroduction.introductionID}">
                     </label>
                     <label for="ifDelete"><input readonly style="display: none" name="ifDelete" id="ifDelete"
                                                          value="0">
                     </label>
                     <div class="form"><div class="inputBox">
-                    <label for="mainTitle">
-                         <input id="mainTitle" type="text" placeholder="News Title" name="mainTitle" style="color: black" value="${sessionScope.mainNews.newsName}" required>
+                    <label for="mainName">
+                         <input id="mainName" type="text" placeholder="Introduction's Name" name="mainName" style="color: black" value="${sessionScope.mainIntroduction.introductionName}" required>
                     </label></div>
-                    <label for="mainArt"></label><textarea id="mainArt" name="mainArt"
-                                                           class="form_textarea">${sessionScope.mainNews.newsText}</textarea>
+                    <label for="mainText"></label><textarea id="mainText" name="mainText"
+                                                           class="form_textarea">${sessionScope.mainIntroduction.introductionText}</textarea>
 
                         <div class="inputBox row">
                             <input type="submit" id="submit" name="submit" value="Submit">
@@ -111,12 +111,12 @@
     $("#change").on({
         click: function () {
             tinymce.init({
-                selector: "#mainArt",
+                selector: "#mainText",
                 language: "zh_CN",
                 plugins: "image",
                 statusbar: false,
                 resize:true,
-                height:600
+                height:900
             });
             $("#readOnly").css('display', 'none');
             $("#manageForm").css('display', '');
@@ -125,7 +125,7 @@
     $("#add").on({
         click: function () {
             tinymce.init({
-                selector: "#mainArt",
+                selector: "#mainText",
                 language: "zh_CN",
                 plugins: "image",
                 statusbar: false,
@@ -135,8 +135,8 @@
             $("#readOnly").css('display', 'none');
             $("#manageForm").css('display', '');
             $("#mainID").val(-1);
-            $("#mainTitle").val(null);
-            $("#mainArt").val(null);
+            $("#mainName").val(null);
+            $("#mainText").val(null);
         }
     });
     $("#undo").on({
